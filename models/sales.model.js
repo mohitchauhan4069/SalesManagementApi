@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 const salesSchema = mongoose.Schema({
   customer: {
     id: {
-      type: mongoose.Schema.Types.ObjectId,     
+      type: mongoose.Schema.Types.ObjectId,
     },
     name: String,
   },
   product: {
     id: {
-      type: mongoose.Schema.Types.ObjectId,     
+      type: mongoose.Schema.Types.ObjectId,
     },
     name: String,
   },
   productQuantity: Number,
   productPrice: Number,
-  totalAmount:Number,
+  totalAmount: Number,
   currentPayment: Number,
   remaningPayment: Number,
   paymentMode: {

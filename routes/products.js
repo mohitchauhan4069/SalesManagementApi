@@ -22,13 +22,13 @@ router.post("/add", async function (req, res, err) {
     updatedAt: req.body.updatedAt,
     productCategory: req.body.productCategory,
   });
-  if (err) {
-    res.send({
-      status: 400,
-      message: "Product already exist..",
-    });
-    return;
-  }
+  // if (err) {
+  //   res.send({
+  //     status: 400,
+  //     message: "Product already exist..",
+  //   });
+  //   return;
+  // }
   let response = await productObj.save();
   res.send({
     status: 200,
@@ -39,10 +39,10 @@ router.get("/top-product", async function (req, res) {
   const ProductList = await productModel
     .find({})
     .sort({ productQuantity: "desc" })
-    .limit(5);
+    .limit(10);
   res.send({
     status: 200,
-    message: "Top 3 Quantity products retrive..",
+    message: "Top 10 Quantity products retrive..",
     allProducts: ProductList,
   });
 });
