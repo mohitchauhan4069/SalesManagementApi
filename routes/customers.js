@@ -34,13 +34,31 @@ router.post("/add", async function (req, res, next) {
 });
 
 //update customer
-router.put("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.put("/:id", async function (req, res) {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+    const options = { new: true };
+    const result = await customerModel.findByIdAndUpdate(
+      id,
+      updatedData,
+      options
+    );
+    res.send(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
-
 //delete  customer
-router.delete("/", function (req, res, next) {
-  res.send("respond with a resource");
-});
+router.delete('/:id', async (req, res) => {
+  try {
+      const id = req.params.id;
+      const data = await customerModel.findByIdAndDelete(id)
+      res.send(`Document with ${data.name} has been deleted..`)
+  }
+  catch (error) {
+      res.status(400).json({ message: error.message })
+  }
+})
 
 module.exports = router;

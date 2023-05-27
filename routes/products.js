@@ -46,4 +46,28 @@ router.get("/top-product", async function (req, res) {
     allProducts: ProductList,
   });
 });
+router.put("/:id", async function (req, res) {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+    const options = { new: true };
+    const result = await productModel.findByIdAndUpdate(
+      id,
+      updatedData,
+      options
+    );
+    res.send(result);
+  } catch (error) {
+    res.status(400).json({ message: error.message }); 
+  }
+});
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await productModel.findByIdAndDelete(id);
+    res.send(`Document with ${data} has been deleted..`);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 module.exports = router;

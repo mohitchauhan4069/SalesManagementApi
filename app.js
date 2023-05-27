@@ -16,7 +16,7 @@ var multer = require("multer");
 var upload = multer();
 
 var customersRouter = require("./routes/customers");
-var productRouter = require("./routes/products");
+var productRouter = require("./routes/products");  
 var salesRouter = require("./routes/sales");
 var paymentsRouter = require("./routes/payments");
 var settingsRouter = require("./routes/settings");
@@ -28,7 +28,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
 // for parsing application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json());     
 
 // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true }));
